@@ -1,0 +1,20 @@
+{
+  "name": "roman-number-converter",
+  "version": "1.0.0",
+  "description": "Convert you Roman numbers to Arabic Numbers and back again",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "node app.js"
+  },
+  "author": "Graham Breckney",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.4.1"
+  },
+  "dependencies": {
+    "express": "^4.15.3",
+    "express-favicon": "^2.0.0"
+  }
+}
