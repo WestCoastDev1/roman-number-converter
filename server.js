@@ -1,21 +1,11 @@
 var favicon = require('express-favicon');
 var express = require('express');
+var middleware = require('./middleware/middleware.js')
 var program = express();
 
 var PORT = 3000;
 
 function server() {
-  var middleware = {
-    requireAuthentication: function (req, res, next) {
-      console.log('private route hit!');
-      next();
-    },
-    logger: function (req, res, next) {
-      console.log('Request :', new Date().toString(), req.method, req.originalUrl);
-      next();
-    }
-  };
-
   program.use(middleware.logger);
   program.use(favicon(__dirname + '/public/favicon.png'));
 
