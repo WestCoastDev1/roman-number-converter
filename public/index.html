@@ -3,8 +3,25 @@
   <head>
     <meta charset="utf-8"/>
     <title>Roman number converter</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src"buttonWorkings.js" type="text/javascript">
+    var grabbedType = "";
+    var grabedValue = "";
+      function getResult()
+      {
+        grabbedType = document.getElementById("transactionType").value ? document.getElementById("transactionType").value.toString() : "";
+        grabbedValue = document.getElementById("transactionValue").value ? document.getElementById("transactionValue").value.toString(): "";
+        console.log(grabbedType, grabbedValue);
+        var outValue = romanNumeralCrossParser({ grabbedType: grabbedValue });
+        console.log(outValue);
+        document.getElementById("outbound").value = outValue
+        // grabbedType = "";
+        // grabbedValue = "";
+      }
+    </script>
+    <script src".//romanNumeralCrossParser/romanNumeralCrossParser.js"></script>
   </head>
   <body>
     <div>
@@ -21,6 +38,23 @@
       <div class = "jumbotron" style="padding-left:40px;">
         <p>This Roman number converter is designed to convert between Roman Numerals and Integers.</p>
         <p>The code deployed on this page is a simple converter for numbers in the range 1 to 3999.</p>
+      </div>
+      <div></div>
+      <div class = "jumbotron" style="padding-left:40px;">
+          <div class="form-group">
+            <label for="usr">Type to convert from (either as 'Numeric' Whole Numbers or 'Roman' Numerals):</label>
+            <input type="text" class="form-control" id="transactionType"></input>
+            <label for="usr">Value to convert (between I and MMMCMXCIX (as 'Roman') (or 1 and 3999) as 'Numeric'):</label>
+            <input type="text" class="form-control" id="transactionValue"></input>
+          </div>
+          <button class="btn" id="pageButton" onclick="getResult()"> Convert </button>
+      </div>
+      <div class = "jumbotron" style="padding-left:40px;">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <label id="outbound"></label>
+          </div>
+        </div>
       </div>
     </div>
   </body>

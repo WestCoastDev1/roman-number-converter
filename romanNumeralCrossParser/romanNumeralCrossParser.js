@@ -7,8 +7,7 @@ function romanNumeralCrossParser(argv) {
   // argv = (typeof argv === 'undefined') ? 'default' : optionalArg;
   if (argv.t === 'Roman') {
     resultantValue = validateRoman(argv);
-  }
-  if (argv.t === 'Numeric') {
+  } else if (argv.t === 'Numeric') {
     resultantValue = validateNumbers(argv);
   } else {
     console.log('Sorry: I can only work out Roman or Numeric values');

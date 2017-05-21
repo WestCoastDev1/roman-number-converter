@@ -1,6 +1,8 @@
-var favicon = require('express-favicon');
 var express = require('express');
-var middleware = require('./middleware/middleware.js')
+var bodyParser = require('body-parser');
+var middleware = require('./middleware/middleware.js');
+var favicon = require('express-favicon');
+var romanNumeralCrossParser = require('./romanNumeralCrossParser/romanNumeralCrossParser.js');
 var router = express.Router();
 var path = __dirname + '/public/';
 
@@ -8,6 +10,7 @@ var program = express();
 var PORT = process.env.PORT || 3000;
 
 function server() {
+  program.use(bodyParser.json());
   program.use(middleware.logger);
   program.use(favicon(__dirname + '/public/favicon.png'));
 
@@ -33,19 +36,21 @@ function server() {
 
   program.use("/",router);
 
-  // 404
-  program.use("*",function(req,res){
-  res.sendFile(path + "404.html");
+  // POST /argv
+  program.post('/', function (req, res) {
+    var body = req.body;
+    console.log('description' + body.toString());
+    var argv = body;
+    console.log(body);
+    var feedback = romanNumeralCrossParser(argv);
+    console.log(feedback);
+    res.json(body);
   });
 
-  // POST /argv
-  program.post('/argv', function (req, res) {
-    var argv = {};
-    argv.t = req.params.type;
-    argv.v = req.params.value;
-    var feedback = romanNumeralCrossParser(argv);
-    res.json(feedback);
-  })
+  // 404
+  //program.use("*",function(req,res){
+  //  res.sendFile(path + "404.html");
+  //});
 
   program.listen(PORT, function () {
     console.log('server up...')
