@@ -1,5 +1,6 @@
 function parseRoman(romanToParse) {
   console.log(romanToParse);
+  console.log(romanToParse.v);
   var outSum = 0;
   try{
     // Setup flags to handle the negative cases
@@ -10,7 +11,7 @@ function parseRoman(romanToParse) {
     var minusFlagTens = false;
     var minusFlagFives = false;
     // change to 'proper' Array just because its functionally explicit
-    var valueArray = Array.from(romanToParse);
+    var valueArray = Array.from(romanToParse.v);
     console.log(valueArray);
     // Set flags for negative cases
     if(valueArray.indexOf("C")>0) {
@@ -53,7 +54,8 @@ function parseRoman(romanToParse) {
     console.log('Finally block executed');
   }
   console.log('this is coming from inside of the function "parseRoman"');
-  return outSum.toString();
+  console.log(outSum);
+  return (outSum.toString());
 }
 
 module.exports = parseRoman;

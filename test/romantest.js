@@ -23,7 +23,8 @@ describe('Test parseNumbers', function(){
 describe('Test parseRoman', function(){
   it('should pass parseRoman', function(){
 
-	var result = parseRoman('MCMLXIX');
+  var argv = ({t:'Roman', v:'MCMLXIX'});
+	var result = parseRoman(argv);
 
 	assert.typeOf(result, 'string', 'result is a string'); // with optional message
 	assert.equal(result, '1969', 'result equal `1969`');
