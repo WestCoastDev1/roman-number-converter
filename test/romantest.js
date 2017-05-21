@@ -3,21 +3,46 @@ var assert = require('chai').assert;
 var romanNumeralCrossParser = require('../romanNumeralCrossParser/romanNumeralCrossParser.js');
 var parseNumbers = require('../romanNumeralCrossParser/parseNumbers.js');
 var parseRoman = require('../romanNumeralCrossParser/parseRoman.js');
-describe('Test Suite', function(){
+var validateRoman = require('../romanNumeralCrossParser/validateRoman.js');
+var validateNumbers = require('../romanNumeralCrossParser/validateNumbers.js');
+describe('Test romanNumeralCrossParser', function(){
   it('should pass romanNumeralCrossParser', function(){
 
-    var result = romanNumeralCrossParser();
+    var argv = ({t:'Numeric', v:'1969'});
+    var result = romanNumeralCrossParser(argv);
 
-	assert.equal(result, '1969', 'result equal `1969`');
+	assert.typeOf(result, 'string', 'result is a string');
+	assert.equal(result, 'MCMLXIX', 'result equal `MCMLXIX`');
+  });
+});
+describe('Test validateNumbers', function(){
+  it('should pass validateNumbers', function(){
+
+  var argv = ({t:'Numeric', v:'1969'});
+	var result = validateNumbers(argv);
+
+	assert.typeOf(result, 'string', 'result is a string');
+	assert.equal(result, 'MCMLXIX', 'result equal `MCMLXIX`');
   });
 });
 describe('Test parseNumbers', function(){
   it('should pass parseNumbers', function(){
 
-	var result = parseNumbers(1969);
+  var argv = ({t:'Numeric', v:'1969'});
+	var result = parseNumbers(argv);
 
-	assert.typeOf(result, 'string', 'result is a string'); // with optional message
+	assert.typeOf(result, 'string', 'result is a string');
 	assert.equal(result, 'MCMLXIX', 'result equal `MCMLXIX`');
+  });
+});
+describe('Test validateRoman', function(){
+  it('should pass validateRoman', function(){
+
+  var argv = ({t:'Roman', v:'MCMLXIX'});
+	var result = validateRoman(argv);
+
+	assert.typeOf(result, 'string', 'result is a string');
+	assert.equal(result, '1969', 'result equal `1969`');
   });
 });
 describe('Test parseRoman', function(){
@@ -26,7 +51,7 @@ describe('Test parseRoman', function(){
   var argv = ({t:'Roman', v:'MCMLXIX'});
 	var result = parseRoman(argv);
 
-	assert.typeOf(result, 'string', 'result is a string'); // with optional message
+	assert.typeOf(result, 'string', 'result is a string');
 	assert.equal(result, '1969', 'result equal `1969`');
   });
 });

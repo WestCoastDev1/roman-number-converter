@@ -37,17 +37,15 @@ function server() {
   program.use("*",function(req,res){
   res.sendFile(path + "404.html");
   });
-  //index
-  // program.use(express.static(__dirname + '/public'));
 
-  //about
-  // program.get('/about', middleware.requireAuthentication, function(req, res) {
-  //   res.send('This page is about the application');
-  // });
-
-  // program.get('/contact', middleware.requireAuthentication, function(req, res) {
-  //   res.send('This page is about contacting me');
-  // });
+  // POST /argv
+  program.post('/argv', function (req, res) {
+    var argv = {};
+    argv.t = req.params.type;
+    argv.v = req.params.value;
+    var feedback = romanNumeralCrossParser(argv);
+    res.json(feedback);
+  })
 
   program.listen(PORT, function () {
     console.log('server up...')

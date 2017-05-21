@@ -1,43 +1,25 @@
-var parseRoman = require('./parseRoman.js')
-var parseNumbers = require('./parseNumbers.js')
+var validateRoman = require('./validateRoman.js');
+var validateNumbers = require('./validateNumbers.js');
 
-function romanNumeralCrossParser() {
+function romanNumeralCrossParser(argv) {
   console.log('the app is started');
   var resultantValue;
-  // hard coded test values
-  var argv = {
-    t: 'Roman',
-    v: 'MCMLXIX'
-  }
+  // argv = (typeof argv === 'undefined') ? 'default' : optionalArg;
   if (argv.t === 'Roman') {
     resultantValue = validateRoman(argv);
   }
-  console.log(resultantValue);
+  if (argv.t === 'Numeric') {
+    resultantValue = validateNumbers(argv);
+  } else {
+    console.log('Sorry: I can only work out Roman or Numeric values');
+  }
+  if(typeof resultantValue !== "undefined") {
+    console.log('your ', argv.t, ' value of ', argv.v, ' converts to ', resultantValue);
+  } else {
+    console.log('Sorry: I couldn`t work out a value for that :(');
+  }
+
   return resultantValue;
 }
 
-function validateRoman(argv) {
-  var resultValue;
-  if (argv.v) {
-    console.log('User entering Roman Chars ', argv.v);
-    argv.v = argv.v.toUpperCase();
-    var goodRomanInRange = validateRangeRoman(argv.v);
-    console.log("good Roman = ", goodRomanInRange);
-    if (goodRomanInRange) {
-      resultValue = parseRoman(argv);
-    } else {
-      console.log('Your Roman numerals didn`t make sense to me :(');
-      console.log('I only understand Roman numerals with values between 1 and 3999');
-    }
-  } else {
-    console.log('You didn`t enter any Roman numerals :(');
-  }
-  return resultValue
-}
-
-function validateRangeRoman(romanString) {
-    var regex = /^(\b(?=[MDCLXVI])(M{0,3})(C[DM]|D?C{0,3})(X[LC]|L?X{0,3})(I[VX]|V?I{0,3})\b)$/;
-    return regex.test(romanString);
-}
-
-  module.exports = romanNumeralCrossParser;
+module.exports = romanNumeralCrossParser;

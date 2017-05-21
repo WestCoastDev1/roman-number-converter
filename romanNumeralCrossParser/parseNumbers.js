@@ -1,7 +1,7 @@
-function parseNumbers(numberToParse) {
+function parseNumbers(argv) {
   var outRoman;
   try{
-    var numberInUse = numberToParse;
+    var numberInUse = parseInt(argv.v);
     var romanized = [];
       while(numberInUse >= 1000) {
         romanized.push('M');
