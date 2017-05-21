@@ -1,3 +1,5 @@
 var server = require('./server.js');
+var romanNumeralCrossParser = require('./romanNumeralCrossParser/romanNumeralCrossParser.js');
 
-server();
+romanNumeralCrossParser();
+// server();
