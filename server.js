@@ -34,9 +34,9 @@ function server() {
   program.use("/",router);
 
   // 404
-  // program.use("*",function(req,res){
-  // res.sendFile(path + "404.html");
-  // });
+  program.use("*",function(req,res){
+  res.sendFile(path + "404.html");
+  });
   //index
   // program.use(express.static(__dirname + '/public'));
 
