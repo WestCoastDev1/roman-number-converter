@@ -42,19 +42,15 @@ function server() {
   // POST /argv
   program.post('/', function (req, res) {
     var dataSlug = req.body.dataSlug;
-    console.log(dataSlug);
     var argv =  JSON.parse( dataSlug.toString() );
-    console.log("object is ",typeof argv);
-    console.log(argv);
     var feedback = romanNumeralCrossParser(argv);
-    console.log(feedback);
     res.json(feedback);
   });
 
   // 404
-  //program.use("*",function(req,res){
-  //  res.sendFile(path + "404.html");
-  //});
+  program.use("*",function(req,res){
+    res.sendFile(path + "404.html");
+  });
 
   program.listen(PORT, function () {
     console.log('server up...')

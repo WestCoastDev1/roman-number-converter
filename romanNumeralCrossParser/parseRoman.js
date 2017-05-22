@@ -1,6 +1,4 @@
 function parseRoman(romanToParse) {
-  console.log(romanToParse);
-  console.log(romanToParse.v);
   var outSum = 0;
   try{
     // Setup flags to handle the negative cases
@@ -12,7 +10,6 @@ function parseRoman(romanToParse) {
     var minusFlagFives = false;
     // change to 'proper' Array just because its functionally explicit
     var valueArray = Array.from(romanToParse.v);
-    console.log(valueArray);
     // Set flags for negative cases
     if(valueArray.indexOf("C")>0) {
       if(valueArray.lastIndexOf("M")>valueArray.indexOf("C")){minusFlagThousands = true;};
@@ -26,7 +23,6 @@ function parseRoman(romanToParse) {
       if(valueArray.lastIndexOf("X")>valueArray.indexOf("I")){minusFlagTens = true;};
       if(valueArray.lastIndexOf("V")>valueArray.indexOf("I")){minusFlagFives = true;};
     }
-    console.log(minusFlagThousands, minusFlagFiveHundreds, minusFlagHundreds, minusFlagFifties, minusFlagTens, minusFlagFives);
     for(var i = 0; i < valueArray.length; i++)
     {
       // sum the entire numbr ignoring negative cases
@@ -38,7 +34,6 @@ function parseRoman(romanToParse) {
       if (valueArray[i] === "V") {outSum = outSum + 5;}
       if (valueArray[i] === "I") {outSum = outSum + 1;}
     };
-    console.log(outSum);
     // use the negatives flags to remove the negative value and the ignorantly added value
     if (minusFlagThousands) {outSum = outSum - 200;}
     if (minusFlagFiveHundreds) {outSum = outSum - 200;}
@@ -46,15 +41,10 @@ function parseRoman(romanToParse) {
     if (minusFlagFifties) {outSum = outSum - 20;}
     if (minusFlagTens) {outSum = outSum - 2;}
     if (minusFlagFives) {outSum = outSum - 2;}
-    console.log(outSum);
   } catch (e) {
     console.log('Sorry, something went wrong :(');
     console.log(e.message);
-  } finally {
-    console.log('Finally block executed');
-  }
-  console.log('this is coming from inside of the function "parseRoman"');
-  console.log(outSum);
+  } finally {}
   return (outSum.toString());
 }
 

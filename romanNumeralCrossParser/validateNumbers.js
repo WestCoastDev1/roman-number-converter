@@ -3,8 +3,7 @@ var parseNumbers = require('./parseNumbers.js');
 function validateNumbers(argv) {
   var resultValue;
   if ((argv.v % 1) === 0) {
-    if (parseInt(argv.v) > 0 && parseInt(argv.v) < 3999) {
-      console.log('User entering a number ', argv.v);
+    if (parseInt(argv.v) > 0 && parseInt(argv.v) <= 3999) {
       resultValue = parseNumbers(argv);
     } else {
       console.log('Your Number didn`t make sense to me :(');

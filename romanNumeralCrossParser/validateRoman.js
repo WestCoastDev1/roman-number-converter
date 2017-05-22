@@ -3,10 +3,8 @@ var parseRoman = require('./parseRoman.js')
 function validateRoman(argv) {
   var resultValue;
   if (argv.v) {
-    console.log('User entering Roman Chars ', argv.v);
     argv.v = argv.v.toUpperCase();
     var goodRomanInRange = validateRangeRoman(argv.v);
-    console.log("good Roman = ", goodRomanInRange);
     if (goodRomanInRange) {
       resultValue = parseRoman(argv);
     } else {

@@ -5,7 +5,6 @@ var romanNumeralCrossParser = require('./romanNumeralCrossParser/romanNumeralCro
 // to get the full console experience. I'd also have liked to sort out
 // a good way of moving between modes...
 function romanNumeralConsolePlugger() {
-  console.log('the app is started');
   var resultantValue;
   var argv = require('yargs')
   	.command('from', 'convert between Roman and Arabic numbers', function (yargs) {
@@ -26,7 +25,6 @@ function romanNumeralConsolePlugger() {
   	})
   	.argv;
   var command = argv._[0];
-  console.log(argv);
 var resultantValue = romanNumeralCrossParser(argv);
 
 return resultantValue;

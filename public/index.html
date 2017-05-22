@@ -7,9 +7,14 @@
     <script src".//romanNumeralCrossParser/romanNumeralCrossParser.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src"buttonWorkings.js" type="text/javascript">
+    <script type="text/javascript">
     var grabbedType = "";
     var grabedValue = "";
+      function clearTextboxes() {
+        transactionType.value = "";
+        transactionValue.value = "";
+        document.getElementById("outbound").innerHTML = "";
+      }
       function getResult() {
         grabbedType = document.getElementById("transactionType").value ? document.getElementById("transactionType").value.toString() : "";
         grabbedValue = document.getElementById("transactionValue").value ? document.getElementById("transactionValue").value.toString(): "";
@@ -49,13 +54,14 @@
           <div class="form-group">
             <label for="usr">Type to convert from (either as 'Numeric' Whole Numbers or 'Roman' Numerals):</label>
             <input type="text" class="form-control" id="transactionType"></input>
-            <label for="usr">Value to convert (between I and MMMCMXCIX (as 'Roman') (or 1 and 3999) as 'Numeric'):</label>
+            <label for="usr">Value to convert (between I and MMMCMXCIX (as 'Roman') or 1 and 3999 (as 'Numeric')):</label>
             <input type="text" class="form-control" id="transactionValue"></input>
           </div>
+          <button class="btn" id="clearButton" onclick="clearTextboxes()"> Clear </button>
           <button class="btn" id="pageButton" onclick="getResult()"> Convert </button>
-          <label id="outbound">HEY!</label>
+          <span class="label label-default" id="outbound"></span>
       </div>
-      <div class = "jumbotron" style="padding-left:40px;">
+      <div class="jumbotron" style="padding-left:40px;">
       </div>
     </div>
   </body>
