@@ -41,9 +41,10 @@ function server() {
 
   // POST /argv
   program.post('/', function (req, res) {
-    var argv = req.body.dataSlug;
-    console.log(argv);
-    argv = JSON.parse(JSON.stringify(argv));
+    var dataSlug = req.body.dataSlug;
+    console.log(dataSlug);
+    var argv =  JSON.parse( dataSlug.toString() );
+    console.log("object is ",typeof argv);
     console.log(argv);
     var feedback = romanNumeralCrossParser(argv);
     console.log(feedback);

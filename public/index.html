@@ -20,7 +20,7 @@
           }
         };
         console.log(grabbedType, grabbedValue);
-        dataSlug = "{t:'" + grabbedType + "', v:'" + grabbedValue + "'}";
+        dataSlug = '{ "t":"' + grabbedType + '", "v": "' + grabbedValue + '" }';
         dataSlug = JSON.stringify({dataSlug});
         xhttp.open("POST", '/', true);
         xhttp.setRequestHeader("Content-Type", "application/json");
