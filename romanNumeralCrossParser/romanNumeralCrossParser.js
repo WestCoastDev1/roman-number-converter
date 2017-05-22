@@ -3,6 +3,8 @@ var validateNumbers = require('./validateNumbers.js');
 
 function romanNumeralCrossParser(argv) {
   console.log('the app is started');
+  console.log(argv);
+  console.log(argv.t);
   var resultantValue;
   // argv = (typeof argv === 'undefined') ? 'default' : optionalArg;
   if (argv.t === 'Roman') {

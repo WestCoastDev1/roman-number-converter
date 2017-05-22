@@ -4,24 +4,29 @@
     <meta charset="utf-8"/>
     <title>Roman number converter</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src".//romanNumeralCrossParser/romanNumeralCrossParser.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src"buttonWorkings.js" type="text/javascript">
     var grabbedType = "";
     var grabedValue = "";
-      function getResult()
-      {
+      function getResult() {
         grabbedType = document.getElementById("transactionType").value ? document.getElementById("transactionType").value.toString() : "";
         grabbedValue = document.getElementById("transactionValue").value ? document.getElementById("transactionValue").value.toString(): "";
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("outbound").innerHTML = this.responseText;
+          }
+        };
         console.log(grabbedType, grabbedValue);
-        var outValue = romanNumeralCrossParser({ grabbedType: grabbedValue });
-        console.log(outValue);
-        document.getElementById("outbound").value = outValue
-        // grabbedType = "";
-        // grabbedValue = "";
-      }
+        dataSlug = "{t:'" + grabbedType + "', v:'" + grabbedValue + "'}";
+        dataSlug = JSON.stringify({dataSlug});
+        xhttp.open("POST", '/', true);
+        xhttp.setRequestHeader("Content-Type", "application/json");
+        xhttp.send(dataSlug);
+        }
     </script>
-    <script src".//romanNumeralCrossParser/romanNumeralCrossParser.js"></script>
   </head>
   <body>
     <div>
@@ -48,13 +53,9 @@
             <input type="text" class="form-control" id="transactionValue"></input>
           </div>
           <button class="btn" id="pageButton" onclick="getResult()"> Convert </button>
+          <label id="outbound">HEY!</label>
       </div>
       <div class = "jumbotron" style="padding-left:40px;">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <label id="outbound"></label>
-          </div>
-        </div>
       </div>
     </div>
   </body>

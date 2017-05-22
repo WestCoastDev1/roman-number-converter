@@ -10,7 +10,10 @@ var program = express();
 var PORT = process.env.PORT || 3000;
 
 function server() {
-  program.use(bodyParser.json());
+  program.use( bodyParser.json() );
+  program.use(bodyParser.urlencoded({
+    extended: true
+  }));
   program.use(middleware.logger);
   program.use(favicon(__dirname + '/public/favicon.png'));
 
@@ -38,13 +41,13 @@ function server() {
 
   // POST /argv
   program.post('/', function (req, res) {
-    var body = req.body;
-    console.log('description' + body.toString());
-    var argv = body;
-    console.log(body);
+    var argv = req.body.dataSlug;
+    console.log(argv);
+    argv = JSON.parse(JSON.stringify(argv));
+    console.log(argv);
     var feedback = romanNumeralCrossParser(argv);
     console.log(feedback);
-    res.json(body);
+    res.json(feedback);
   });
 
   // 404
